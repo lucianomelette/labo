@@ -15,8 +15,10 @@ class LoginController extends Controller
 	
 	public function login($request, $response, $args)
 	{
-		$username = $request->getParsedBody()['username'];
-		$password = $request->getParsedBody()['password'];
+		$body = $request->getParsedBody();
+
+		$username = $body['username'];
+		$password = $body['password'];
 		
 		$user = User::where('username', $username)
 					->where('password', $password)
@@ -34,6 +36,7 @@ class LoginController extends Controller
 	public function logout($request, $response, $args)
 	{
 		unset($_SESSION['user_session']);
+		unset($_SESSION['company_session']);
 		unset($_SESSION['project_session']);
 		
 		return $response->withJson([
@@ -65,7 +68,8 @@ class LoginController extends Controller
 	
 		$args = [
 			"navbar" => [
-				"username_session" => $_SESSION["user_session"]->username,
+				"username_session" 		=> $_SESSION["user_session"]->username,
+				"display_name_session" 	=> $_SESSION["user_session"]->display_name,
 			],
 			"companies" => $companies,
 		];
@@ -93,8 +97,9 @@ class LoginController extends Controller
 	
 		$args = [
 			"navbar" => [
-				"username_session" 	=> $_SESSION["user_session"]->username,
-				"company_session" 	=> $_SESSION["company_session"]->business_name,
+				"username_session" 		=> $_SESSION["user_session"]->username,
+				"display_name_session" 	=> $_SESSION["user_session"]->display_name,
+				"company_session" 		=> $_SESSION["company_session"]->business_name,
 			],
 			"projects" => $projects,
 		];
