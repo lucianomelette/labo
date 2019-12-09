@@ -117,6 +117,10 @@
 						dated_at: {
 							title: 'Fecha',
 							width: '10%',
+							display: function(data) {
+								debugger;
+								return new Date(data.record.dated_at).toLocaleDatetime();
+							}
 						},
 						document_type_code: {
 							title: 'Código',
