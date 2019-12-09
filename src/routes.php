@@ -6,7 +6,7 @@ use Slim\Http\Response;
 // Routes
 
 $app->get('/', function($request, $response) {
-	return $response->withRedirect($this->router->pathFor('suppliers'));
+	return $response->withRedirect($this->router->pathFor('customers'));
 });
 
 $app->group('/login', function() use ($sessionAuth, $companyAuth) {
