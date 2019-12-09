@@ -4,8 +4,7 @@
 // e.g: $app->add(new \Slim\Csrf\Guard);
 
 $hostAuth = function ($request, $response, $next) {
-    if ($request->getUri()->getBaseUrl() === 'http://yoladrillo.hol.es'
-        || $request->getUri()->getBaseUrl() === 'http://yoladrillo.com') {
+    if ($request->getUri()->getBaseUrl() === 'http://labo.890m.com') {
         return $next($request, $response);
     }
     else {
