@@ -32,9 +32,16 @@ class SalesReportsController extends Controller
 	
 	public function report($request, $response, $args)
 	{
-		$customers_ids 			= (isset($request->getParsedBody()["customers_ids"]) ? $request->getParsedBody()["customers_ids"] : null);
-		$sales_docs_codes		= (isset($request->getParsedBody()["sales_docs_codes"]) ? $request->getParsedBody()["sales_docs_codes"] : null);
+		$body = $request->getParsedBody();
+
+		$customers_ids 			= (isset($body["customers_ids"]) ? $body["customers_ids"] : null);
+		$sales_docs_codes		= (isset($body["sales_docs_codes"]) ? $body["sales_docs_codes"] : null);
 		
+		var_dump($body["customers_ids"]);
+		var_dump($customers_ids);
+		var_dump("end");
+		return;
+
 		$sales = SaleHeader::where('project_id', $_SESSION['project_session']->id)
 										->where('is_canceled', false)
 										->when($customers_ids != null, function($query) use ($customers_ids) {
