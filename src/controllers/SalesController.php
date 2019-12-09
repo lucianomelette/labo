@@ -18,9 +18,10 @@ class SalesController extends Controller
 	
 		$args = [
 			"navbar" => [
-				"username_session" 	=> $_SESSION["user_session"]->username,
-				"project_session" 	=> $project->full_name,
-				"company_session" 	=> $company->business_name,
+				"username_session" 		=> $_SESSION["user_session"]->username,
+				"display_name_session" 	=> $_SESSION["user_session"]->display_name,
+				"project_session" 		=> $project->full_name,
+				"company_session" 		=> $company->business_name,
 			],
 			"customers" 		=> $company->customers->sortBy("business_name"),
 			"documentsTypes" 	=> $project->salesDocumentsTypes->sortBy("description"),
