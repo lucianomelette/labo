@@ -11,12 +11,7 @@ class SaleHeader extends Model
 		'id',
 		'customer_id',
 		'document_type_code',
-		'number',
 		'dated_at',
-		'subtotal',
-		'perceptions',
-		'taxes',
-		'total',
 		'comments',
 		'project_id',
 		'is_canceled',
@@ -30,10 +25,5 @@ class SaleHeader extends Model
 	public function documentType()
 	{
 		return $this->hasOne('\App\Models\SaleDocumentType', 'unique_code', 'document_type_code');
-	}
-	
-	public function details()
-	{
-		return $this->hasMany('\App\Models\SaleDetail', 'header_id');
 	}
 }
