@@ -53,12 +53,10 @@ class SalesReportsController extends Controller
 		$find 		= ['Ñ', 'ñ', 'á', 'é', 'í', 'ó', 'ú', 'Á', 'É', 'Í', 'Ó', 'Ú'];
 		$replace 	= ['N', 'n', 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
 		
-	    while (count($sales) > $sal)
-	    {
-			// take older first...
-			$document = $sales[$sal];
-			$sal++;
-			
+	    foreach ($sales as $document)
+	    {			
+			var_dump($document);
+
 	        array_push($records, (object)[
                 "id"            => $document->id,
                 "dated_at"      => $document->dated_at,
@@ -77,6 +75,7 @@ class SalesReportsController extends Controller
 		
 		foreach($records as $record)
 	    {
+			var_dump($record);
 	        $responseHTML .=	$this->padr($record->id, 6, " ") .
 	                            $this->padr($record->dated_at, 12, " ") .
 	                            $this->padr($record->unique_code, 6, " ") .
