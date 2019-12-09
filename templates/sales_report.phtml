@@ -117,12 +117,14 @@
 						salesDocsCodes = $('select[name="sales-docs-types-select"]').val();
 					}
 					
+debugger;
+
 					$.ajax({
 						method: 'POST',
 						url: '/sales/report',
 						data: { 
-							customers_ids : 			$('select[name="customers-select"]').val(),
-							sales_docs_codes : 			salesDocsCodes,
+							customers_ids : 	$('select[name="customers-select"]').val(),
+							sales_docs_codes : 	salesDocsCodes,
 						},
 						success: function(data, textStatus, jqXHR) {
 							

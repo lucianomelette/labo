@@ -35,9 +35,6 @@ class SalesReportsController extends Controller
 		$customers_ids 			= (isset($request->getParsedBody()["customers_ids"]) ? $request->getParsedBody()["customers_ids"] : null);
 		$sales_docs_codes		= (isset($request->getParsedBody()["sales_docs_codes"]) ? $request->getParsedBody()["sales_docs_codes"] : null);
 		
-		var_dump($customer_ids);
-		var_dump($sales_docs_codes);
-
 		$sales = SaleHeader::where('project_id', $_SESSION['project_session']->id)
 										->where('is_canceled', false)
 										->when($customers_ids != null, function($query) use ($customers_ids) {
@@ -49,9 +46,6 @@ class SalesReportsController extends Controller
 	                                    ->orderBy('dated_at', 'ASC')
 										->get();
 										
-		var_dump($sales);
-		return;
-	                                    
 	    $records = Array();
 	    
 	    $sal = 0;
