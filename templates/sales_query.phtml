@@ -118,8 +118,8 @@
 							title: 'Fecha',
 							width: '10%',
 							display: function(data) {
-								debugger;
-								return new Date(data.record.dated_at).toLocaleDatetime();
+								const d = new Date(data.record.dated_at);
+								return d.toLocaleDateString() + d.toLocaleTimeString().substr(0, 5);
 							}
 						},
 						document_type_code: {
