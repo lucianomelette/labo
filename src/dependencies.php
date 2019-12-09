@@ -43,3 +43,13 @@ $container['ProjectsController'] = function ($container) {
 $container['CustomersController'] = function ($container) {
 	return new \App\Controllers\CustomersController($container);
 };
+
+// sales controller
+$container['SalesController'] = function ($container) {
+	return new \App\Controllers\SalesController($container);
+};
+
+// sales reports controller
+$container['SalesReportsController'] = function ($container) {
+	return new \App\Controllers\SalesReportsController($container);
+};
