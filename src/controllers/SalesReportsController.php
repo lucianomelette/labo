@@ -37,11 +37,6 @@ class SalesReportsController extends Controller
 		$customers_ids 			= (isset($body["customers_ids"]) ? $body["customers_ids"] : null);
 		$sales_docs_codes		= (isset($body["sales_docs_codes"]) ? $body["sales_docs_codes"] : null);
 		
-		var_dump($body["customers_ids"]);
-		var_dump($customers_ids);
-		var_dump("end");
-		return;
-
 		$sales = SaleHeader::where('project_id', $_SESSION['project_session']->id)
 										->where('is_canceled', false)
 										->when($customers_ids != null, function($query) use ($customers_ids) {
@@ -62,8 +57,6 @@ class SalesReportsController extends Controller
 		
 	    foreach ($sales as $document)
 	    {			
-			var_dump($document);
-
 	        array_push($records, (object)[
                 "id"            => $document->id,
                 "dated_at"      => $document->dated_at,
@@ -82,7 +75,6 @@ class SalesReportsController extends Controller
 		
 		foreach($records as $record)
 	    {
-			var_dump($record);
 	        $responseHTML .=	$this->padr($record->id, 6, " ") .
 	                            $this->padr($record->dated_at, 12, " ") .
 	                            $this->padr($record->unique_code, 6, " ") .
