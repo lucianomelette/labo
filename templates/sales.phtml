@@ -270,8 +270,7 @@
 									// header
 									$('select[name="customers-select"]').val(data.Document.customer_id).trigger('change');
 									$('select[name="docs-types-select"]').val(data.Document.document_type_code).trigger('change');
-									debugger;
-									$('input[name="doc-date"]').val(data.Document.dated_at);
+									$('input[name="doc-date"]').val(data.Document.dated_at.replace(" ", "T"));
 									
 									// footer
 									$('input[name="doc-comments"]').val(data.Document.comments);
