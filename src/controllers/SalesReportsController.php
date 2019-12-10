@@ -59,7 +59,7 @@ class SalesReportsController extends Controller
 	    {			
 	        array_push($records, (object)[
                 "id"            => $document->id,
-                "dated_at"      => $document->dated_at,
+                "dated_at"      => Carbon::create($document->dated_at)->format('d/m/Y'),
                 "unique_code"   => $document->document_type_code,
                 "business_name" => $document->customer->business_name,
 				"comments"		=> $document->comments,
