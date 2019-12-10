@@ -47,7 +47,7 @@ class SalesReportsController extends Controller
 											$query->whereIn('document_type_code', $sales_docs_codes);
 										})
 										->when($dated_at != null, function($query) use ($dated_at) {
-											$query->whereBetween('dated_at', [$dated_at, $dated_at]);
+											$query->whereBetween('dated_at', [$dated_at . " 00:00:00", $dated_at . " 23:59:59"]);
 										})
 	                                    ->orderBy('dated_at', 'ASC')
 										->get();
