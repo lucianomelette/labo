@@ -13,6 +13,10 @@ class Customer extends Model
 		'fantasy_name',
 		'business_name',
 		'cuit',
+		'email',
+		'location',
+		'contact_name',
+		'phone_number',
 		'category_id',
 		'company_id',
 	];

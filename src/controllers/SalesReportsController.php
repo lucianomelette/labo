@@ -56,18 +56,26 @@ class SalesReportsController extends Controller
 		$replace 	= ['N', 'n', 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
 		
 	    foreach ($sales as $document)
-	    {			
+	    {	
+			$datedAt = Carbon::createFromFormat('Y-m-d h:i:s', $document->dated_at);
+
 	        array_push($records, (object)[
                 "id"            => $document->id,
-                "dated_at"      => Carbon::createFromFormat('Y-m-d h:i:s', $document->dated_at)->format('d/m/Y'),
+                "dated_at"      => $datedAt->format('d/m/Y'),
+                "timed_at"      => $datedAt->format('h:i'),
                 "unique_code"   => $document->document_type_code,
                 "business_name" => $document->customer->business_name,
+                "email" 		=> $document->customer->email,
+                "location" 		=> $document->customer->location,
+                "contact_name" 	=> $document->customer->contact_name,
+                "phone_number" 	=> $document->customer->phone_number,
 				"comments"		=> $document->comments,
             ]);
 	    }
 	    				
 		$responseHTML =	$this->padr("ID", 6, " ") .
 						$this->padr("FECHA", 12, " ") .
+						$this->padr("HORA", 7, " ") .
 						$this->padr("TIPO", 6, " ") .
 						$this->padr("CLIENTE", 20, " ") .
 						$this->padr("COMENTARIOS", 15, " ") . "\n" .
@@ -77,6 +85,7 @@ class SalesReportsController extends Controller
 	    {
 	        $responseHTML .=	$this->padr($record->id, 6, " ") .
 	                            $this->padr($record->dated_at, 12, " ") .
+	                            $this->padr($record->timed_at, 7, " ") .
 	                            $this->padr($record->unique_code, 6, " ") .
 	                            $this->padr($record->business_name, 20, " ", " ") .
 	                            $this->padr($record->comments, 15, " ", " ") . "\n";
