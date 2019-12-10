@@ -85,11 +85,11 @@
 								<div class="row">
 							        <div class="col-12 col-md-4 col-lg-3">
 										<div class="btn btn-outline-primary" name="btn-report"><i class="fa fa-report"></i> Generar Reporte</div>
-									<div>
+									</div>
 
 									<div class="col-12 col-md-4 col-lg-3">
 										<div class="btn btn-outline-primary" name="btn-export"><i class="fa fa-xls"></i> Exportar a Excel</div>
-									<div>
+									</div>
 								</div>
 								
 								<hr>
@@ -129,7 +129,76 @@
 		
 		<!-- Optional JavaScript -->
 		<script>
-			$(function(){
+			$(function()
+			{
+				if ( !$('select[name="customers-select"]').hasClass('d-none') )
+					$('select[name="customers-select"]').select2({ width: '100%' });
+				
+				if ( !$('select[name="sales-docs-types-select"]').hasClass('d-none') )
+					$('select[name="sales-docs-types-select"]').select2({ width: '100%' });
+				
+				// click on report
+				$('div[name="btn-report"]').on('click', function(e) {
+					e.preventDefault();
+					
+					var salesDocsCodes = ['x'];
+					if ( !$('input[name="sales-docs-types-check-nothing"]').prop('checked') ) {
+						salesDocsCodes = $('select[name="sales-docs-types-select"]').val();
+					}
+					
+					$.ajax({
+						method: 'POST',
+						url: '/sales/report',
+						data: { 
+							customers_ids : 	$('select[name="customers-select"]').val(),
+							sales_docs_codes : 	salesDocsCodes,
+							dated_at :			$('input[name="dated-at"]').val(),
+						},
+						success: function(data, textStatus, jqXHR)
+						{
+							if (data.Result == 'OK')
+							{
+								var body = $('div[name="report-content"] > table[name="table-report"] > tbody');
+								
+								body.empty();
+
+								data.Records.forEach(function(record) {
+									body.append("<tr>" +
+													"<td>" + record.id + "</td>" +
+													"<td>" + record.dated_at + "</td>" +
+													"<td>" + record.timed_at + "</td>" +
+													"<td>" + record.business_name + "</td>" +
+													"<td>" + record.email + "</td>" +
+													"<td>" + record.location + "</td>" +
+													"<td>" + record.contact_name + "</td>" +
+													"<td>" + record.phone_number + "</td>" +
+													"<td>" + record.comments + "</td>" +
+												"</tr>");
+								});
+								
+							}
+							else {
+								alert('error');
+							}
+						},
+						error: function(jqXHR, textStatus, errorThrown) {
+							console.warn(jqXHR.responseText);
+						},
+					});
+				});
+
+				// click on export
+				$('div[name="btn-export"]').on('click', function(e) {
+					e.preventDefault();
+
+					xport.toXLS('table_report');
+				});
+				
+				// checkboxes
+				$('input[name="sales-docs-types-check-nothing"]').on('change', function(e) {
+					var checked = $(this).prop('checked');
+					$('select[name="sales-docs-types-select"]').prop("disabled", checked);
+				});
 
 				// export to excel
 				var xport = {
@@ -230,75 +299,6 @@
 						.join("\r\n");
 					}
 				};
-				
-				if ( !$('select[name="customers-select"]').hasClass('d-none') )
-					$('select[name="customers-select"]').select2({ width: '100%' });
-				
-				if ( !$('select[name="sales-docs-types-select"]').hasClass('d-none') )
-					$('select[name="sales-docs-types-select"]').select2({ width: '100%' });
-				
-				// click on report
-				$('div[name="btn-report"]').on('click', function(e) {
-					e.preventDefault();
-					
-					var salesDocsCodes = ['x'];
-					if ( !$('input[name="sales-docs-types-check-nothing"]').prop('checked') ) {
-						salesDocsCodes = $('select[name="sales-docs-types-select"]').val();
-					}
-					
-					$.ajax({
-						method: 'POST',
-						url: '/sales/report',
-						data: { 
-							customers_ids : 	$('select[name="customers-select"]').val(),
-							sales_docs_codes : 	salesDocsCodes,
-							dated_at :			$('input[name="dated-at"]').val(),
-						},
-						success: function(data, textStatus, jqXHR)
-						{
-							if (data.Result == 'OK')
-							{
-								var body = $('div[name="report-content"] > table[name="table-report"] > tbody');
-								
-								body.empty();
-
-								data.Records.forEach(function(record) {
-									body.append("<tr>" +
-													"<td>" + record.id + "</td>" +
-													"<td>" + record.dated_at + "</td>" +
-													"<td>" + record.timed_at + "</td>" +
-													"<td>" + record.business_name + "</td>" +
-													"<td>" + record.email + "</td>" +
-													"<td>" + record.location + "</td>" +
-													"<td>" + record.contact_name + "</td>" +
-													"<td>" + record.phone_number + "</td>" +
-													"<td>" + record.comments + "</td>" +
-												"</tr>");
-								});
-								
-							}
-							else {
-								alert('error');
-							}
-						},
-						error: function(jqXHR, textStatus, errorThrown) {
-							console.warn(jqXHR.responseText);
-						},
-					});
-				});
-
-				// click on export
-				$('div[name="btn-export"]').on('click', function(e) {
-					e.preventDefault();
-
-					xport.toXLS('table_report');
-				});
-				
-				// checkboxes
-				$('input[name="sales-docs-types-check-nothing"]').on('change', function(e) {
-					var checked = $(this).prop('checked');
-					$('select[name="sales-docs-types-select"]').prop("disabled", checked);
-				});
 
 			});
 		</script>
