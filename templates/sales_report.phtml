@@ -92,7 +92,6 @@
 														<th>ID</th>
 														<th>Fecha</th>
 														<th>Hora</th>
-														<th>Tipo</th>
 														<th>Cliente</th>
 														<th>Email</th>
 														<th>Domicilio</th>
@@ -148,7 +147,20 @@
 							if (data.Result == 'OK')
 							{
 								var body = $('div[name="report-content"] > table[name="table-report"] > tbody');
-								body.append("<tr><td>caca</td></tr>");
+								data.Records.forEach(function(record) {
+									body.append("<tr>" +
+													"<td>" + record.id + "</td>" +
+													"<td>" + record.dated_at + "</td>" +
+													"<td>" + record.timed_at + "</td>" +
+													"<td>" + record.business_name + "</td>" +
+													"<td>" + record.email + "</td>" +
+													"<td>" + record.location + "</td>" +
+													"<td>" + record.contact_name + "</td>" +
+													"<td>" + record.phone_number + "</td>" +
+													"<td>" + record.comments + "</td>" +
+												"</tr>");
+								});
+								
 							}
 							else {
 								alert('error');
