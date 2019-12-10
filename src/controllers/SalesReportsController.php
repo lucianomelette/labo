@@ -36,6 +36,7 @@ class SalesReportsController extends Controller
 
 		$customers_ids 			= (isset($body["customers_ids"]) ? $body["customers_ids"] : null);
 		$sales_docs_codes		= (isset($body["sales_docs_codes"]) ? $body["sales_docs_codes"] : null);
+		$dated_at				= (isset($body["dated_at"]) ? $body["dated_at"] : null);
 		
 		$sales = SaleHeader::where('project_id', $_SESSION['project_session']->id)
 										->where('is_canceled', false)
@@ -44,6 +45,9 @@ class SalesReportsController extends Controller
 										})
 										->when($sales_docs_codes != null, function($query) use ($sales_docs_codes) {
 											$query->whereIn('document_type_code', $sales_docs_codes);
+										})
+										->when($dated_at != null, function($query) use ($dated_at) {
+											$query->where('dated_at', $dated_at);
 										})
 	                                    ->orderBy('dated_at', 'ASC')
 										->get();

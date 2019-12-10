@@ -73,6 +73,13 @@
 											</select>
 										</div>
 									</div>
+
+									<div class="col-lg-4 col-md-6">
+										<div class="form-group">
+											<label class="font-weight-bold">Fecha:</label>
+											<input class="form-control" type="date" name="dated-at">
+										</div>
+									</div>
 								</div>
 								
 								<div class="row">
@@ -134,6 +141,8 @@
 					if ( !$('input[name="sales-docs-types-check-nothing"]').prop('checked') ) {
 						salesDocsCodes = $('select[name="sales-docs-types-select"]').val();
 					}
+
+
 					
 					$.ajax({
 						method: 'POST',
@@ -141,6 +150,7 @@
 						data: { 
 							customers_ids : 	$('select[name="customers-select"]').val(),
 							sales_docs_codes : 	salesDocsCodes,
+							dated_at :			$('input[name="dated-at"]'),
 						},
 						success: function(data, textStatus, jqXHR)
 						{
