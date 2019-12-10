@@ -10,9 +10,10 @@ class CustomersController extends Controller
 	{	
 		$args = [
 			"navbar" => [
-				"username_session" 	=> $_SESSION["user_session"]->username,
-				"project_session" 	=> $_SESSION["project_session"]->full_name,
-				"company_session" 	=> $_SESSION["company_session"]->business_name,
+				"username_session" 		=> $_SESSION["user_session"]->username,
+				"display_name_session" 	=> $_SESSION["user_session"]->display_name,
+				"project_session" 		=> $_SESSION["project_session"]->full_name,
+				"company_session" 		=> $_SESSION["company_session"]->business_name,
 			],
 		];
 	
