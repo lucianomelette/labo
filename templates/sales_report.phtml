@@ -191,7 +191,7 @@
 				$('div[name="btn-export"]').on('click', function(e) {
 					e.preventDefault();
 
-					xport.toXLS('table_report');
+					xport.toCSV('table_report');
 				});
 				
 				// checkboxes
@@ -218,7 +218,7 @@
 						var htmltable = document.getElementById(tableId);
 						var html = htmltable.outerHTML;
 
-						this._downloadAnchor("data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" + encodeURIComponent(html), 'xls'); 
+						this._downloadAnchor("data:application/vnd.ms-excel" + encodeURIComponent(html), 'xls'); 
 					},
 					toCSV: function(tableId, filename) {
 						this._filename = (typeof filename === 'undefined') ? tableId : filename;
