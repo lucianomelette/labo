@@ -147,6 +147,9 @@
 							if (data.Result == 'OK')
 							{
 								var body = $('div[name="report-content"] > table[name="table-report"] > tbody');
+								
+								body.empty();
+
 								data.Records.forEach(function(record) {
 									body.append("<tr>" +
 													"<td>" + record.id + "</td>" +
