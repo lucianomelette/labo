@@ -63,7 +63,6 @@ class SalesReportsController extends Controller
                 "id"            => $document->id,
                 "dated_at"      => $datedAt->format('d/m/Y'),
                 "timed_at"      => $datedAt->format('h:i'),
-                "unique_code"   => $document->document_type_code,
                 "business_name" => $document->customer->business_name,
                 "email" 		=> $document->customer->email,
                 "location" 		=> $document->customer->location,
@@ -72,11 +71,11 @@ class SalesReportsController extends Controller
 				"comments"		=> $document->comments,
             ]);
 	    }
-	    				
+		
+		/*
 		$responseHTML =	$this->padr("ID", 6, " ") .
 						$this->padr("FECHA", 12, " ") .
 						$this->padr("HORA", 7, " ") .
-						$this->padr("TIPO", 6, " ") .
 						$this->padr("CLIENTE", 20, " ") .
 						$this->padr("EMAIL", 20, " ") .
 						$this->padr("DOMICILIO", 20, " ") .
@@ -90,7 +89,6 @@ class SalesReportsController extends Controller
 	        $responseHTML .=	$this->padr($record->id, 6, " ") .
 	                            $this->padr($record->dated_at, 12, " ") .
 	                            $this->padr($record->timed_at, 7, " ") .
-	                            $this->padr($record->unique_code, 6, " ") .
 	                            $this->padr($record->business_name, 20, " ", " ") .
 	                            $this->padr($record->email, 20, " ", " ") .
 	                            $this->padr($record->location, 20, " ", " ") .
@@ -98,11 +96,12 @@ class SalesReportsController extends Controller
 	                            $this->padr($record->phone_number, 20, " ", " ") .
 	                            $this->padr($record->comments, 15, " ", " ") . "\n";
 	                            
-	    }
+		}
+		*/
 		
 		return $response->withJson([
 			"Result" 	=> "OK",
-			"Records" 	=> html_entity_decode($responseHTML, ENT_QUOTES, "UTF-8"),
+			"Records" 	=> $records,
 		]);
 	}
 	

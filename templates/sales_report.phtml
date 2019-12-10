@@ -85,7 +85,26 @@
 									
 							    <div class="row mt-3">
 							        <div class="col">
-							            <textarea name="report-content"></textarea>
+							            <div name="report-content" class="table table-responsive">
+											<table name="table-report">
+												<thead>
+													<tr>
+														<th>ID</th>
+														<th>Fecha</th>
+														<th>Hora</th>
+														<th>Tipo</th>
+														<th>Cliente</th>
+														<th>Email</th>
+														<th>Domicilio</th>
+														<th>Contacto</th>
+														<th>Teléfono</th>
+														<th>Comentarios</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</div>
 							        </div>
 							    </div>
 							</div>
@@ -124,11 +143,12 @@
 							customers_ids : 	$('select[name="customers-select"]').val(),
 							sales_docs_codes : 	salesDocsCodes,
 						},
-						success: function(data, textStatus, jqXHR) {
-							
+						success: function(data, textStatus, jqXHR)
+						{
 							if (data.Result == 'OK')
 							{
-								$('textarea[name="report-content"]').html(data.Records);
+								var body = $('div[name="report-content"] > table[name="table-report"] > tbody');
+								body.appendChild("<tr><td>caca</td></tr>");
 							}
 							else {
 								alert('error');
