@@ -78,6 +78,10 @@ class SalesReportsController extends Controller
 						$this->padr("HORA", 7, " ") .
 						$this->padr("TIPO", 6, " ") .
 						$this->padr("CLIENTE", 20, " ") .
+						$this->padr("EMAIL", 20, " ") .
+						$this->padr("DOMICILIO", 20, " ") .
+						$this->padr("CONTACTO", 20, " ") .
+						$this->padr("TELEFONO", 20, " ") .
 						$this->padr("COMENTARIOS", 15, " ") . "\n" .
 						str_repeat("-", 137) . "\n";
 		
@@ -88,6 +92,10 @@ class SalesReportsController extends Controller
 	                            $this->padr($record->timed_at, 7, " ") .
 	                            $this->padr($record->unique_code, 6, " ") .
 	                            $this->padr($record->business_name, 20, " ", " ") .
+	                            $this->padr($record->email, 20, " ", " ") .
+	                            $this->padr($record->location, 20, " ", " ") .
+	                            $this->padr($record->contact_name, 20, " ", " ") .
+	                            $this->padr($record->phone_number, 20, " ", " ") .
 	                            $this->padr($record->comments, 15, " ", " ") . "\n";
 	                            
 	    }
