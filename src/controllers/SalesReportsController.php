@@ -61,7 +61,7 @@ class SalesReportsController extends Controller
 		
 	    foreach ($sales as $document)
 	    {	
-			$datedAt = Carbon::createFromFormat('Y-m-d h:i:s', $document->dated_at);
+			$datedAt = Carbon::createFromFormat('Y-m-d H:i:s', $document->dated_at);
 
 	        array_push($records, (object)[
                 "id"            => $document->id,
