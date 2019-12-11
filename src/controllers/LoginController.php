@@ -135,6 +135,6 @@ class LoginController extends Controller
 
 	private function setProjectSession($projectId)
 	{
-		$_SESSION["project_session"] = Project::find(projectId);
+		$_SESSION["project_session"] = Project::find($projectId);
 	}
 }
