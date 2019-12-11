@@ -39,7 +39,7 @@ $app->group('/login', function() use ($sessionAuth, $companyAuth) {
 $app->group('/customers', function() {
 	$this->get('', 'CustomersController')->setName('customers');
 	$this->post('/{action}[/{customer_id}]', 'CustomersController:action');
-})->add($appAuth)->add($sessionAuth)->add($hostAuth);
+})->add($appAuth)->add($companyAuth)->add($sessionAuth)->add($hostAuth);
 
 // sales
 $app->group('/sales', function() {
@@ -53,7 +53,7 @@ $app->group('/sales', function() {
 	// general
 	$this->get('[/{headerId}]', 'SalesController')->setName('sales_creation');
 	$this->post('/{action}[/{headerId}]', 'SalesController:action');
-})->add($appAuth)->add($sessionAuth)->add($hostAuth);
+})->add($appAuth)->add($companyAuth)->add($sessionAuth)->add($hostAuth);
 
 // ************* //
 // **  STOCK  ** //
@@ -63,4 +63,4 @@ $app->group('/sales', function() {
 $app->group('/products', function() {
 	$this->get('', 'ProductsController');
 	$this->post('/{action}', 'ProductsController:action');
-})->add($appAuth)->add($sessionAuth)->add($hostAuth);
+})->add($appAuth)->add($companyAuth)->add($sessionAuth)->add($hostAuth);
