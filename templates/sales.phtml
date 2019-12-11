@@ -168,7 +168,7 @@
 							customer_id : 			$('select[name="customers-select"] option:selected').val(),
 							document_type_code : 	$('select[name="docs-types-select"] option:selected').val(),
 							dated_at : 				$('input[name="doc-date"]').val(),
-							comments : 				$('input[name="doc-comments"]').val(),
+							comments : 				$('input[name="doc-comments"]').text(),
 						};
 						
 						if (isEdit())
@@ -240,7 +240,7 @@
 					$('select[name="docs-types-select"]').val('N/A').trigger('change');
 					$('input[name="doc-date"]').val("");
 					
-					$('input[name="doc-comments"]').val("");
+					$('input[name="doc-comments"]').text("");
 				}
 				
 				function hasUnsavedChanges()
