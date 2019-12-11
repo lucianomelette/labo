@@ -169,7 +169,7 @@
 							customer_id : 			$('select[name="customers-select"] option:selected').val(),
 							document_type_code : 	$('select[name="docs-types-select"] option:selected').val(),
 							dated_at : 				$('input[name="doc-date"]').val(),
-							comments : 				$('input[name="doc-comments"]').text(),
+							comments : 				$('textarea[name="doc-comments"]').text(),
 						};
 						
 						if (isEdit())
@@ -241,7 +241,7 @@
 					$('select[name="docs-types-select"]').val('N/A').trigger('change');
 					$('input[name="doc-date"]').val("");
 					
-					$('input[name="doc-comments"]').text("");
+					$('textarea[name="doc-comments"]').text("");
 				}
 				
 				function hasUnsavedChanges()
@@ -277,7 +277,7 @@
 									$('input[name="doc-date"]').val(data.Document.dated_at.replace(" ", "T"));
 									
 									// footer
-									$('input[name="doc-comments"]').text(data.Document.comments);
+									$('textarea[name="doc-comments"]').text(data.Document.comments);
 								}
 								else if (data.Result == 'ERROR') {
 									$.stdShowMessage({
