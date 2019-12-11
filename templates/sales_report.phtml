@@ -100,6 +100,7 @@
 											<table id="table_report" name="table-report">
 												<thead>
 													<tr>
+														<th>Fecha</th>
 														<th>Hora</th>
 														<th></th>
 														<th></th>
@@ -171,6 +172,7 @@
 
 								data.Records.forEach(function(record) {
 									body.append("<tr>" +
+													"<td>" + record.dated_at + "</td>" +
 													"<td>" + record.timed_at + "</td>" +
 													"<td></td>" +
 													"<td></td>" +
