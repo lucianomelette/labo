@@ -66,7 +66,7 @@ class SalesReportsController extends Controller
 	        array_push($records, (object)[
                 "id"            => $document->id,
                 "dated_at"      => $datedAt->format('d/m/Y'),
-                "timed_at"      => $datedAt->format('h:i'),
+                "timed_at"      => $datedAt->format('H:i'),
                 "business_name" => $document->customer->business_name,
                 "email" 		=> $document->customer->email,
                 "location" 		=> $document->customer->location,
