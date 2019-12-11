@@ -69,7 +69,7 @@ class LoginController extends Controller
 		if (count($companies) == 1)
 		{
 			$this->setCompanySession($companies[0]->id);
-			return $response->withRedirect($this->router->pathFor('projects_selection'));
+			return $response->withRedirect($this->container->router->pathFor('projects_selection'));
 		}
 		else
 		{
