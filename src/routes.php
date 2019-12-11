@@ -6,7 +6,7 @@ use Slim\Http\Response;
 // Routes
 
 $app->get('/', function($request, $response) {
-	return $response->withRedirect($this->router->pathFor('customers'));
+	return $response->withRedirect($this->router->pathFor('sales_creation'));
 });
 
 $app->group('/login', function() use ($sessionAuth, $companyAuth) {
@@ -51,7 +51,7 @@ $app->group('/sales', function() {
 	$this->get('/query', 'SalesController:query');
 	
 	// general
-	$this->get('[/{headerId}]', 'SalesController');
+	$this->get('[/{headerId}]', 'SalesController')->setName('sales_creation');
 	$this->post('/{action}[/{headerId}]', 'SalesController:action');
 })->add($appAuth)->add($sessionAuth)->add($hostAuth);
 

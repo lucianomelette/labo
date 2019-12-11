@@ -71,18 +71,16 @@ class LoginController extends Controller
 			$this->setCompanySession($companies[0]->id);
 			return $response->withRedirect($this->container->router->pathFor('projects_selection'));
 		}
-		else
-		{
-			$args = [
-				"navbar" => [
-					"username_session" 		=> $_SESSION["user_session"]->username,
-					"display_name_session" 	=> $_SESSION["user_session"]->display_name,
-				],
-				"companies" => $companies,
-			];
-			
-			return $this->container->renderer->render($response, 'login_companies_selection.phtml', $args);
-		}
+
+		$args = [
+			"navbar" => [
+				"username_session" 		=> $_SESSION["user_session"]->username,
+				"display_name_session" 	=> $_SESSION["user_session"]->display_name,
+			],
+			"companies" => $companies,
+		];
+		
+		return $this->container->renderer->render($response, 'login_companies_selection.phtml', $args);
 	}
 	
 	public function companySelected($request, $response, $args)
@@ -108,6 +106,12 @@ class LoginController extends Controller
 					->projects
 					->where('company_id', $_SESSION["company_session"]->id);
 	
+		if (count($projects) == 1)
+		{
+			$this->setProjectSession($projects[0]->id);
+			return $response->withRedirect($this->container->router->pathFor('sales_creation'));
+		}
+
 		$args = [
 			"navbar" => [
 				"username_session" 		=> $_SESSION["user_session"]->username,
@@ -122,10 +126,15 @@ class LoginController extends Controller
 	
 	public function projectSelected($request, $response, $args)
 	{	
-		$_SESSION["project_session"] = Project::find($args["project_id"]);
+		$this->setProjectSession($args["project_id"]);
 		
 		return $response->withJson([
 			'status' => 'ok',
 		]);
+	}
+
+	private function setProjectSession($projectId)
+	{
+		$_SESSION["project_session"] = Project::find(projectId);
 	}
 }
