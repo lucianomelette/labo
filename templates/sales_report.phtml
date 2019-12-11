@@ -84,8 +84,8 @@
 								
 								<div class="row">
 							        <div class="col-12 col-md-4 col-lg-3">
-										<div class="btn btn-outline-primary" name="btn-report"><i class="fa fa-list-ul"></i> Generar Reporte</div>
-										<div class="btn btn-outline-primary" name="btn-export"><i class="fa fa-file-excel"></i> Exportar a Excel</div>
+										<span class="btn btn-outline-primary pr-2" name="btn-report"><i class="fa fa-list-ul"></i> Generar Reporte</span>
+										<span class="btn btn-outline-primary" name="btn-export"><i class="fa fa-file-excel"></i> Exportar a Excel</span>
 									</div>
 								</div>
 								
@@ -143,7 +143,7 @@
 					$('select[name="sales-docs-types-select"]').select2({ width: '100%' });
 				
 				// click on report
-				$('div[name="btn-report"]').on('click', function(e) {
+				$('span[name="btn-report"]').on('click', function(e) {
 					e.preventDefault();
 					
 					var salesDocsCodes = ['x'];
@@ -201,7 +201,7 @@
 				});
 
 				// click on export
-				$('div[name="btn-export"]').on('click', function(e) {
+				$('span[name="btn-export"]').on('click', function(e) {
 					e.preventDefault();
 					exportTableToExcel('table_report');
 				});
