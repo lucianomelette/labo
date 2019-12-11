@@ -66,24 +66,37 @@ class LoginController extends Controller
 		$companies = User::find($_SESSION["user_session"]->id)
 					->companies;
 	
-		$args = [
-			"navbar" => [
-				"username_session" 		=> $_SESSION["user_session"]->username,
-				"display_name_session" 	=> $_SESSION["user_session"]->display_name,
-			],
-			"companies" => $companies,
-		];
-		
-		return $this->container->renderer->render($response, 'login_companies_selection.phtml', $args);
+		if (count($companies) == 1)
+		{
+			$this->setCompanySession($companies[0]->id);
+			return $response->withRedirect($this->router->pathFor('projects_selection'));
+		}
+		else
+		{
+			$args = [
+				"navbar" => [
+					"username_session" 		=> $_SESSION["user_session"]->username,
+					"display_name_session" 	=> $_SESSION["user_session"]->display_name,
+				],
+				"companies" => $companies,
+			];
+			
+			return $this->container->renderer->render($response, 'login_companies_selection.phtml', $args);
+		}
 	}
 	
 	public function companySelected($request, $response, $args)
 	{	
-		$_SESSION["company_session"] = Company::find($args["company_id"]);
+		$this->setCompanySession($args["company_id"]);
 		
 		return $response->withJson([
 			'status' => 'ok',
 		]);
+	}
+
+	private function setCompanySession($companyId)
+	{
+		$_SESSION["company_session"] = Company::find($companyId);
 	}
 	
 	// projects options
