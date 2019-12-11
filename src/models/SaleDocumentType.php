@@ -13,6 +13,7 @@ class SaleDocumentType extends Model
 		'description',
 		'sequence',
 		'balance_multiplier',
+		'is_default',
 		'project_id',
 	];
 }

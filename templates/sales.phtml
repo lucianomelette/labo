@@ -56,7 +56,9 @@
 											<?php foreach($documentsTypes as $documentType) : ?>
 												<option
 													value="<?= $documentType->unique_code ?>"
-													data-sequence="<?= $documentType->sequence ?>">
+													data-sequence="<?= $documentType->sequence ?>"
+													<?= ($documentType->is_default ? " selected" : "") ?>
+													>
 													<?= trim($documentType->description) ?>
 												</option>
 											<?php endforeach; ?>
