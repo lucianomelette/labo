@@ -98,8 +98,8 @@ class CustomersController extends Controller
 	private function options($request, $response, $args)
 	{
 		$options = Model::where('company_id', $_SESSION["company_session"]->id)
-							->selectRaw("id as Value, fantasy_name as DisplayText")
-							->orderBy('fantasy_name', 'asc')
+							->selectRaw("id as Value, business_name as DisplayText")
+							->orderBy('business_name', 'asc')
 							->get();
 		
 		return $response->withJson([
