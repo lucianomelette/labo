@@ -276,7 +276,7 @@
 									$('input[name="doc-date"]').val(data.Document.dated_at.replace(" ", "T"));
 									
 									// footer
-									$('input[name="doc-comments"]').val(data.Document.comments);
+									$('input[name="doc-comments"]').text(data.Document.comments);
 								}
 								else if (data.Result == 'ERROR') {
 									$.stdShowMessage({
