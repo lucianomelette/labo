@@ -37,7 +37,7 @@
 		<form class="form-inline my-2 my-lg-0 mr-3">
 			<ul class="navbar-nav mr-auto">
 				
-				<?php if (isset($project_session)) and false : ?>
+				<?php if (isset($project_session) and false) : ?>
 				<li class="nav-item dropdown active">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="fa fa-home"></i> <?= $project_session ?>
@@ -51,7 +51,7 @@
 				</li>
 				<?php endif; ?>
 				
-				<?php if (isset($company_session)) and false : ?>
+				<?php if (isset($company_session) and false) : ?>
 				<li class="nav-item dropdown active">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="fa fa-building"></i> <?= $company_session ?>
