@@ -37,7 +37,7 @@
 												<option value="N/A">Seleccionar cliente...</option>
 											<?php foreach($customers as $customer) : ?>
 												<option value="<?= $customer->id ?>">
-													<?= $customer->unique_code . ' | ' . $customer->business_name ?>
+													<?= $customer->business_name ?>
 												</option>
 											<?php endforeach; ?>
 											<?php endif; ?>
