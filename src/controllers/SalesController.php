@@ -173,7 +173,7 @@ class SalesController extends Controller
 		return $this->container->renderer->render($response, 'sales_query.phtml', $args);
 	}
 
-	private function email($request, $response, $args)
+	public function email($request, $response, $args)
 	{
 		mail('luciano.m86@gmail.com', 'Email de prueba', 'Este es un mail de prueba');
 	}
