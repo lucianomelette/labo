@@ -179,6 +179,30 @@
 					e.preventDefault();
 					exportTableToExcel('table_report');
 				});
+
+				// click on send email
+				$('span[name="btn-email"]').on('click', function(e) {
+					e.preventDefault();
+					
+					$.ajax({
+						method: 'POST',
+						url: '/sales/email',
+						data: {},
+						success: function(data, textStatus, jqXHR)
+						{
+							if (data.Result == 'OK')
+							{
+								alert('ok');
+							}
+							else {
+								alert('error');
+							}
+						},
+						error: function(jqXHR, textStatus, errorThrown) {
+							console.warn(jqXHR.responseText);
+						},
+					});
+				});
 				
 				// checkboxes
 				$('input[name="sales-docs-types-check-nothing"]').on('change', function(e) {

@@ -49,6 +49,9 @@ $app->group('/sales', function() {
 	
 	// query
 	$this->get('/query', 'SalesController:query');
+
+	// send email
+	$this->post('/email', 'SalesController:email');
 	
 	// general
 	$this->get('[/{headerId}]', 'SalesController')->setName('sales_creation');
