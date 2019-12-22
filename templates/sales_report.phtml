@@ -217,7 +217,7 @@
 
 					debugger;
 					var exportData = table.getExportData(); 
-					var xlsxData = exportData.table.xlsx; // Replace with the kind of file you want from the exportData
+					var xlsxData = exportData.table_report.xlsx; // Replace with the kind of file you want from the exportData
 					table.export2file(xlsxData.data, xlsxData.mimeType, xlsxData.filename, xlsxData.fileExtension, xlsxData.merges, xlsxData.RTL, xlsxData.sheetname);
 				}
 
