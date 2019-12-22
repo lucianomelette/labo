@@ -2,21 +2,6 @@
 <html lang="en">
 	<head>
 		<?= $this->fetch('/partials/header.phtml') ?>
-		
-		<style>
-			textarea {
-				border: none;
-				overflow: auto;
-				outline: none;
-				-webkit-box-shadow: none;
-				-moz-box-shadow: none;
-				box-shadow: none;
-				resize: none; /*remove the resize handle on the bottom right*/
-				font: 15px Courier New;
-				width: 100%;
-				height: 1000px;
-			}
-		</style>
 	</head>
 	<body>
 		<?= $this->fetch('/partials/navbar.phtml', $navbar) ?>
@@ -99,19 +84,12 @@
 													<tr>
 														<th>Fecha</th>
 														<th>Hora</th>
-														<th></th>
-														<th></th>
 														<th>Veterinaria</th>
-														<th></th>
 														<th>Domicilio</th>
-														<th></th>
 														<th>Vendedor</th>
-														<th>Direccion</th>
 														<th>Localidad</th>
 														<th>Telefono</th>
 														<th>Med. Veterinario</th>
-														<th>Distribuidora</th>
-														<th>Encargado Compras</th>
 														<th>Productos que trabajan</th>
 														<th>Email</th>
 													</tr>
@@ -171,19 +149,12 @@
 									body.append("<tr>" +
 													"<td>" + record.dated_at + "</td>" +
 													"<td>" + record.timed_at + "</td>" +
-													"<td></td>" +
-													"<td></td>" +
 													"<td>" + record.business_name + "</td>" +
-													"<td></td>" +
 													"<td>" + record.location + "</td>" +
-													"<td></td>" +
 													"<td>Jose Boccuzzi</td>" +
-													"<td></td>" +
 													"<td>CAP</td>" +
 													"<td>" + record.phone_number + "</td>" +
 													"<td>" + record.contact_name + "</td>" +
-													"<td></td>" +
-													"<td></td>" +
 													"<td>" + record.comments + "</td>" +
 													"<td>" + record.email + "</td>" +
 												"</tr>");
